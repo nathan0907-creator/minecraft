@@ -152,6 +152,7 @@
             position: absolute;
             z-index: 2;
             opacity: 0;
+            top: 230px; /* Position sous le cœur */
             transition: opacity 0.3s ease;
         }
     </style>
@@ -170,11 +171,13 @@
     <!-- Le cœur principal avec texte -->
     <div class="heart" onclick="showMessage()">
         <div class="heart-text">Je t'aime</div>
-        <div class="message" id="message">Je t'aime</div>
     </div>
 
+    <!-- Message "Je t'aime" qui apparait -->
+    <div class="message" id="message">Je t'aime</div>
+
     <script>
-        // Fonction qui montre le message "Je t'aime" et cache celui du cœur principal
+        // Fonction qui montre le message "Je t'aime" au clic et cache celui du cœur
         function showMessage() {
             var heartText = document.querySelector('.heart-text');
             var message = document.getElementById('message');
