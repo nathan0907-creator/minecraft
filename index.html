@@ -3,52 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cœur Animé Stylé</title>
+    <title>Cœur Interactif</title>
     <style>
-        /* Body centrage et fond */
+        /* Corps de la page */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #121212;
+            background-color: #f4f4f4;
+            overflow: hidden;
         }
 
         /* Le cœur */
         .heart {
             position: relative;
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             background-color: #ff3860;
             transform: rotate(-45deg);
             animation: heartbeat 1.5s ease-in-out infinite;
-            box-shadow: 0 8px 20px rgba(255, 56, 96, 0.5);
+            cursor: pointer;
+            transition: transform 0.2s ease;
             border-radius: 50%;
-        }
-
-        /* Les deux parties du cœur */
-        .heart::before,
-        .heart::after {
-            content: "";
-            position: absolute;
-            width: 120px;
-            height: 120px;
-            background-color: #ff3860;
-            border-radius: 50%;
-            box-shadow: 0 8px 20px rgba(255, 56, 96, 0.5);
+            box-shadow: 0 12px 24px rgba(255, 56, 96, 0.3);
         }
 
         /* Partie supérieure gauche du cœur */
         .heart::before {
-            top: -60px;
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-color: #ff3860;
+            border-radius: 50%;
+            top: -75px;
             left: 0;
+            box-shadow: 0 12px 24px rgba(255, 56, 96, 0.3);
         }
 
         /* Partie supérieure droite du cœur */
         .heart::after {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-color: #ff3860;
+            border-radius: 50%;
             top: 0;
-            left: 60px;
+            left: 75px;
+            box-shadow: 0 12px 24px rgba(255, 56, 96, 0.3);
         }
 
         /* Animation du battement du cœur */
@@ -63,6 +68,12 @@
                 transform: scale(1) rotate(-45deg);
             }
         }
+
+        /* Effet de clic - secousse */
+        .heart:active {
+            transform: scale(1.2) rotate(-45deg) translateY(-5px);
+        }
+
     </style>
 </head>
 <body>
