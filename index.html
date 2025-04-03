@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cœur Interactif</title>
+    <title>Cœur Animé - Je t'aime</title>
     <style>
         /* Corps de la page */
         body {
@@ -14,46 +14,108 @@
             margin: 0;
             background-color: #f4f4f4;
             overflow: hidden;
+            position: relative;
         }
 
-        /* Le cœur */
+        /* Cœurs en arrière-plan */
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff3860;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Animation de flottement des cœurs */
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-50px) scale(1.2);
+            }
+            100% {
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Animation pour créer des cœurs qui flottent */
+        .floating-heart:nth-child(1) {
+            left: 10%;
+            animation-duration: 4s;
+            animation-delay: 0s;
+        }
+
+        .floating-heart:nth-child(2) {
+            left: 30%;
+            animation-duration: 6s;
+            animation-delay: 1s;
+        }
+
+        .floating-heart:nth-child(3) {
+            left: 50%;
+            animation-duration: 5s;
+            animation-delay: 2s;
+        }
+
+        .floating-heart:nth-child(4) {
+            left: 70%;
+            animation-duration: 7s;
+            animation-delay: 3s;
+        }
+
+        .floating-heart:nth-child(5) {
+            left: 90%;
+            animation-duration: 6s;
+            animation-delay: 4s;
+        }
+
+        /* Le cœur principal */
         .heart {
             position: relative;
-            width: 150px;
-            height: 150px;
+            width: 200px;
+            height: 200px;
             background-color: #ff3860;
             transform: rotate(-45deg);
-            animation: heartbeat 1.5s ease-in-out infinite;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border-radius: 50%;
             box-shadow: 0 12px 24px rgba(255, 56, 96, 0.3);
         }
 
-        /* Partie supérieure gauche du cœur */
-        .heart::before {
-            content: "";
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            background-color: #ff3860;
-            border-radius: 50%;
-            top: -75px;
-            left: 0;
-            box-shadow: 0 12px 24px rgba(255, 56, 96, 0.3);
-        }
-
-        /* Partie supérieure droite du cœur */
+        .heart::before,
         .heart::after {
             content: "";
             position: absolute;
-            width: 150px;
-            height: 150px;
+            width: 200px;
+            height: 200px;
             background-color: #ff3860;
             border-radius: 50%;
-            top: 0;
-            left: 75px;
             box-shadow: 0 12px 24px rgba(255, 56, 96, 0.3);
+        }
+
+        .heart::before {
+            top: -100px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 100px;
         }
 
         /* Animation du battement du cœur */
@@ -69,14 +131,29 @@
             }
         }
 
-        /* Effet de clic - secousse */
-        .heart:active {
-            transform: scale(1.2) rotate(-45deg) translateY(-5px);
+        /* Texte "Je t'aime" */
+        .heart-text {
+            font-size: 24px;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            position: absolute;
+            z-index: 1;
         }
-
     </style>
 </head>
 <body>
-    <div class="heart"></div>
-</body>
-</html>
+
+    <!-- Cœurs flottants en arrière-plan -->
+    <div class="floating-hearts">
+        <div class="floating-heart"></div>
+        <div class="floating-heart"></div>
+        <div class="floating-heart"></div>
+        <div class="floating-heart"></div>
+        <div class="floating-heart"></div>
+    </div>
+
+    <!-- Le cœur principal avec le texte -->
+    <div class="heart">
+        <div class="heart-text">Je t'aime</div>
+    </div>
