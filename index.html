@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cœur Interactif</title>
+    <title>Je t'aime 💖</title>
     <style>
-        /* Corps de la page avec fond dégradé noir et rose */
+        /* Fond noir et rose avec un dégradé */
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background: linear-gradient(45deg, #121212, #ff69b4); /* Fond noir et rose */
+            background: linear-gradient(45deg, #121212, #ff69b4);
             overflow: hidden;
             position: relative;
-            color: white;
+            font-family: Arial, sans-serif;
         }
 
         /* Cœurs flottants en arrière-plan */
@@ -31,14 +32,14 @@
 
         .floating-heart {
             position: absolute;
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
             background-color: #ff3860;
             clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            animation: float 4s ease-in-out infinite;
+            opacity: 0.7;
+            animation: float 5s infinite ease-in-out;
         }
 
-        /* Animation de flottement des cœurs */
         @keyframes float {
             0% {
                 transform: translateY(0) scale(1);
@@ -51,148 +52,87 @@
             }
         }
 
-        /* Animation pour créer des cœurs qui flottent */
-        .floating-heart:nth-child(1) {
-            left: 10%;
-            animation-duration: 4s;
-            animation-delay: 0s;
-        }
-
-        .floating-heart:nth-child(2) {
-            left: 30%;
-            animation-duration: 6s;
-            animation-delay: 1s;
-        }
-
-        .floating-heart:nth-child(3) {
-            left: 50%;
-            animation-duration: 5s;
-            animation-delay: 2s;
-        }
-
-        .floating-heart:nth-child(4) {
-            left: 70%;
-            animation-duration: 7s;
-            animation-delay: 3s;
-        }
-
-        .floating-heart:nth-child(5) {
-            left: 90%;
-            animation-duration: 6s;
-            animation-delay: 4s;
-        }
-
-        /* Le cœur principal */
+        /* Cœur central */
         .heart {
             position: relative;
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             background-color: #ff3860;
             transform: rotate(-45deg);
             cursor: pointer;
-            animation: heartbeat 1.5s ease-in-out infinite;
+            animation: heartbeat 1.5s infinite;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 50%;
-            box-shadow: 0 12px 24px rgba(255, 56, 96, 0.3);
+            box-shadow: 0 10px 20px rgba(255, 56, 96, 0.4);
         }
 
         .heart::before,
         .heart::after {
             content: "";
             position: absolute;
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             background-color: #ff3860;
             border-radius: 50%;
-            box-shadow: 0 12px 24px rgba(255, 56, 96, 0.3);
         }
 
         .heart::before {
-            top: -100px;
+            top: -75px;
             left: 0;
         }
 
         .heart::after {
+            left: 75px;
             top: 0;
-            left: 100px;
         }
 
         /* Animation du battement du cœur */
         @keyframes heartbeat {
-            0% {
-                transform: scale(1) rotate(-45deg);
-            }
-            50% {
-                transform: scale(1.1) rotate(-45deg);
-            }
-            100% {
-                transform: scale(1) rotate(-45deg);
-            }
+            0% { transform: scale(1) rotate(-45deg); }
+            50% { transform: scale(1.1) rotate(-45deg); }
+            100% { transform: scale(1) rotate(-45deg); }
         }
 
-        /* Texte "Je t'aime" à l'intérieur du cœur */
-        .heart-text {
-            font-size: 24px;
-            color: white;
-            font-family: 'Arial', sans-serif;
-            font-weight: bold;
-            position: absolute;
-            z-index: 1;
-            transition: opacity 0.3s ease;
-        }
-
-        /* Style du message "Je t'aime" après le clic */
+        /* Message "Je t'aime" */
         .message {
             font-size: 30px;
-            color: #ff3860;
-            font-family: 'Arial', sans-serif;
+            color: white;
             font-weight: bold;
-            position: absolute;
-            z-index: 2;
             opacity: 0;
-            top: 230px; /* Position sous le cœur */
-            transition: opacity 0.3s ease;
+            transition: opacity 0.5s;
+            margin-top: 20px;
+        }
+
+        /* Apparition du message */
+        .show {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
 
-    <!-- Cœurs flottants en arrière-plan -->
+    <!-- Cœurs flottants -->
     <div class="floating-hearts">
-        <div class="floating-heart"></div>
-        <div class="floating-heart"></div>
-        <div class="floating-heart"></div>
-        <div class="floating-heart"></div>
-        <div class="floating-heart"></div>
+        <div class="floating-heart" style="left: 10%; animation-duration: 6s;"></div>
+        <div class="floating-heart" style="left: 25%; animation-duration: 4s;"></div>
+        <div class="floating-heart" style="left: 40%; animation-duration: 5s;"></div>
+        <div class="floating-heart" style="left: 60%; animation-duration: 7s;"></div>
+        <div class="floating-heart" style="left: 80%; animation-duration: 6s;"></div>
     </div>
 
-    <!-- Le cœur principal avec texte -->
-    <div class="heart" onclick="showMessage()">
-        <div class="heart-text">Je t'aime</div>
-    </div>
+    <!-- Cœur principal -->
+    <div class="heart" onclick="showLove()"></div>
 
-    <!-- Message "Je t'aime" qui apparait -->
-    <div class="message" id="message">Je t'aime</div>
+    <!-- Message "Je t'aime" qui apparaît au clic -->
+    <div class="message" id="message">Je t'aime 💖</div>
 
     <script>
-        // Fonction qui montre le message "Je t'aime" au clic et cache celui du cœur
-        function showMessage() {
-            var heartText = document.querySelector('.heart-text');
-            var message = document.getElementById('message');
-
-            // Cache le texte "Je t'aime" du cœur
-            heartText.style.opacity = '0';
-            
-            // Affiche le message "Je t'aime" après clic
-            message.style.opacity = '1';
-
-            // Réinitialise après un délai pour faire revenir le cœur à son état initial
-            setTimeout(function() {
-                heartText.style.opacity = '1';
-                message.style.opacity = '0';
-            }, 3000); // Attendre 3 secondes avant de réinitialiser
+        function showLove() {
+            document.getElementById('message').classList.add('show');
+            setTimeout(() => {
+                document.getElementById('message').classList.remove('show');
+            }, 3000); // Disparaît après 3 secondes
         }
     </script>
 
