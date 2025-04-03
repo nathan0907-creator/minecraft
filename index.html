@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cœur Animé - Je t'aime</title>
+    <title>Cœur Interactif</title>
     <style>
         /* Corps de la page */
         body {
@@ -17,7 +17,7 @@
             position: relative;
         }
 
-        /* Cœurs en arrière-plan */
+        /* Cœurs flottants en arrière-plan */
         .floating-hearts {
             position: absolute;
             top: 0;
@@ -131,7 +131,7 @@
             }
         }
 
-        /* Texte "Je t'aime" */
+        /* Texte "Je t'aime" à l'intérieur du cœur */
         .heart-text {
             font-size: 24px;
             color: white;
@@ -139,6 +139,19 @@
             font-weight: bold;
             position: absolute;
             z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Style du message "Je t'aime" après le clic */
+        .message {
+            font-size: 30px;
+            color: #ff3860;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            position: absolute;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
     </style>
 </head>
@@ -153,7 +166,31 @@
         <div class="floating-heart"></div>
     </div>
 
-    <!-- Le cœur principal avec le texte -->
-    <div class="heart">
+    <!-- Le cœur principal avec texte -->
+    <div class="heart" onclick="showMessage()">
         <div class="heart-text">Je t'aime</div>
+        <div class="message" id="message">Je t'aime</div>
     </div>
+
+    <script>
+        // Fonction qui montre le message "Je t'aime" et cache celui du cœur principal
+        function showMessage() {
+            var heartText = document.querySelector('.heart-text');
+            var message = document.getElementById('message');
+
+            // Cache le texte "Je t'aime" du cœur
+            heartText.style.opacity = '0';
+            
+            // Affiche le message "Je t'aime" après clic
+            message.style.opacity = '1';
+
+            // Réinitialise après un délai pour faire revenir le cœur à son état initial
+            setTimeout(function() {
+                heartText.style.opacity = '1';
+                message.style.opacity = '0';
+            }, 3000); // Attendre 3 secondes avant de réinitialiser
+        }
+    </script>
+
+</body>
+</html>
